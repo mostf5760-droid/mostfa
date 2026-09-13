@@ -4,39 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إلى نبض قلبي نمارق</title>
+    
+    <!-- تحميل مكتبة Tailwind CSS للتصميم المتجاوب -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- تحميل خطوط عربية فخمة من جوجل -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
     <style>
         body {
             font-family: 'Cairo', sans-serif;
-            /* خلفية عميقة وداكنة جداً للتركيز على الألوان الحمراء والذهبية */
-            background: radial-gradient(circle at center, #2a0008 0%, #0a0002 100%);
+            /* خلفية عميقة جداً بمزيج من الأسود والأحمر القاني للتركيز على الإضاءة */
+            background: radial-gradient(circle at center, #2a0008 0%, #050001 100%);
             color: #fff;
             overflow-x: hidden;
             margin: 0;
             min-height: 100vh;
-            cursor: pointer; /* تلميح للمستخدم بإمكانية النقر */
+            cursor: pointer;
         }
 
         .font-amiri { font-family: 'Amiri', serif; }
-        .font-ruqaa { font-family: 'Aref Ruqaa', serif; } /* خط كلاسيكي فخم للاسم */
+        .font-ruqaa { font-family: 'Aref Ruqaa', serif; } /* خط كلاسيكي للاسم */
 
         .petal {
             position: absolute;
             background-color: #ff003c;
-            border-radius: 150% 0 150% 0;
-            box-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
+            border-radius: 150% 0 150% 0; /* شكل يشبه بتلة الورد */
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.6);
             animation: fall linear infinite;
-            pointer-events: none;
+            pointer-events: none; /* كي لا تمنع النقر على ما تحتها */
             z-index: 1;
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         @keyframes fall {
             0% { transform: translateY(-10vh) rotate(0deg) scale(0.5); opacity: 0; }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
+            10% { opacity: 0.9; }
+            80% { opacity: 0.9; }
+            100% { transform: translateY(110vh) rotate(360deg) scale(1.3); opacity: 0; }
         }
 
         .magic-heart {
@@ -44,84 +49,95 @@
             pointer-events: none;
             animation: floatMagic 1.5s ease-out forwards;
             z-index: 100;
-            text-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
+            text-shadow: 0 0 20px rgba(255, 20, 147, 1);
         }
 
         @keyframes floatMagic {
-            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
-            100% { transform: translate(-50%, -150px) scale(1.5); opacity: 0; }
+            0% { transform: translate(-50%, -50%) scale(0.5) rotate(-10deg); opacity: 1; }
+            100% { transform: translate(-50%, -180px) scale(1.8) rotate(20deg); opacity: 0; }
         }
 
         .glow-text {
-            text-shadow: 0 0 20px rgba(255, 0, 60, 0.8), 0 0 40px rgba(255, 0, 60, 0.4);
+            text-shadow: 0 0 25px rgba(255, 0, 60, 0.9), 0 0 50px rgba(255, 0, 60, 0.5);
         }
 
         .gold-glow {
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            color: #ffdf00;
         }
 
         .glass-card {
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 0, 60, 0.05) 100%);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 0, 60, 0.15);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 60, 0.05);
-            transition: all 0.5s ease;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 0, 60, 0.06) 100%);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 0, 60, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 0 25px rgba(255, 0, 60, 0.1);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* حركة ارتدادية ناعمة */
         }
 
         .glass-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(255, 0, 60, 0.3), inset 0 0 30px rgba(255, 0, 60, 0.1);
-            border: 1px solid rgba(255, 0, 60, 0.4);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(255, 0, 60, 0.4), inset 0 0 40px rgba(255, 0, 60, 0.2);
+            border: 1px solid rgba(255, 0, 60, 0.6);
+        }
+
+        .heart-btn-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .heart-btn {
             position: relative;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle at 30% 30%, #ff4d4d, #cc0000);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
             transform: rotate(45deg);
             animation: intenseHeartbeat 1.2s infinite;
             cursor: pointer;
-            box-shadow: 0 0 40px rgba(204, 0, 0, 0.8);
+            box-shadow: 0 0 50px rgba(255, 0, 0, 0.9);
             border: none;
             outline: none;
+            z-index: 10;
         }
 
         .heart-btn::before, .heart-btn::after {
             content: '';
             position: absolute;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle at 30% 30%, #ff4d4d, #cc0000);
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
             border-radius: 50%;
         }
 
-        .heart-btn::before { top: -60px; left: 0; }
-        .heart-btn::after { top: 0; left: -60px; }
+        .heart-btn::before { top: -40px; left: 0; }
+        .heart-btn::after { top: 0; left: -40px; }
 
         @keyframes intenseHeartbeat {
-            0% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(255, 0, 60, 0.5); }
-            15% { transform: rotate(45deg) scale(1.1); box-shadow: 0 0 60px rgba(255, 0, 60, 1); }
-            30% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(255, 0, 60, 0.5); }
-            45% { transform: rotate(45deg) scale(1.2); box-shadow: 0 0 80px rgba(255, 0, 60, 1); }
-            100% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(255, 0, 60, 0.5); }
+            0% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(255, 0, 60, 0.6); }
+            15% { transform: rotate(45deg) scale(1.15); box-shadow: 0 0 70px rgba(255, 0, 60, 1); }
+            30% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(255, 0, 60, 0.6); }
+            45% { transform: rotate(45deg) scale(1.25); box-shadow: 0 0 100px rgba(255, 0, 60, 1); }
+            100% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(255, 0, 60, 0.6); }
         }
 
-        .transition-opacity { transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out; }
+        .transition-opacity { transition: opacity 2s ease-in-out, visibility 2s ease-in-out; }
         
         .typewriter-cursor::after {
             content: '|';
             animation: blink 1s infinite;
             color: #ff003c;
-            text-shadow: 0 0 10px #ff003c;
+            text-shadow: 0 0 15px #ff003c;
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #0a0002; }
-        ::-webkit-scrollbar-thumb { background: #ff003c; border-radius: 4px; }
+        /* تجميل شريط التمرير */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050001; }
+        ::-webkit-scrollbar-thumb { background: #ff003c; border-radius: 10px; }
     </style>
 </head>
 <body class="relative flex items-center justify-center min-h-screen">
@@ -129,112 +145,113 @@
     <!-- حاوية التأثيرات الخلفية (بتلات الورد) -->
     <div id="petals-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
 
-    <div id="intro-screen" class="fixed inset-0 flex flex-col items-center justify-center z-50 bg-[#0a0002] transition-opacity">
+    <div id="intro-screen" class="fixed inset-0 flex flex-col items-center justify-center z-50 bg-[#050001] transition-opacity">
         <div class="text-center flex flex-col items-center justify-center">
-            <p class="text-xl md:text-2xl font-amiri text-gray-400 mb-16 tracking-widest opacity-80" style="animation: pulseText 3s infinite alternate;">
+            <p class="text-xl md:text-3xl font-amiri text-gray-400 mb-20 tracking-widest opacity-80 drop-shadow-lg" style="animation: pulseText 3s infinite alternate;">
                 هناك شيء يختلج في صدري...
             </p>
             
             <!-- الزر على شكل قلب حقيقي ينبض -->
-            <div class="mt-10 mb-20">
-                <button onclick="revealLove()" class="heart-btn" aria-label="افتح الهدية"></button>
+            <div class="heart-btn-container mb-24" onclick="revealLove()">
+                <div class="absolute inset-0 bg-red-600 rounded-full blur-[60px] opacity-30 animate-pulse"></div>
+                <button class="heart-btn" aria-label="افتح الهدية"></button>
             </div>
             
-            <p class="text-2xl md:text-3xl font-amiri gold-glow mt-8">
+            <p class="text-2xl md:text-4xl font-amiri gold-glow mt-8 animate-bounce">
                 المسي قلبي، يا نمارق...
             </p>
         </div>
     </div>
     
     <style>
-        @keyframes pulseText { from { opacity: 0.4; } to { opacity: 1; } }
+        @keyframes pulseText { from { opacity: 0.3; transform: scale(0.98); } to { opacity: 1; transform: scale(1.02); } }
     </style>
 
-    <div id="main-content" class="opacity-0 invisible absolute inset-0 w-full h-full z-10 flex flex-col items-center overflow-y-auto overflow-x-hidden pt-10 pb-20 px-4 transition-opacity">
+    <div id="main-content" class="opacity-0 invisible absolute inset-0 w-full h-full z-10 flex flex-col items-center overflow-y-auto overflow-x-hidden pt-12 pb-24 px-4 transition-opacity">
         
         <div class="w-full max-w-5xl flex flex-col items-center">
             
             <!-- عنوان الاسم الفخم -->
-            <div class="text-center mt-10 md:mt-20 mb-16 relative">
-                <div class="absolute inset-0 bg-red-600 blur-[100px] opacity-20 rounded-full w-64 h-64 mx-auto mix-blend-screen pointer-events-none"></div>
-                <h2 class="text-2xl md:text-4xl font-amiri text-gray-300 mb-4 tracking-wider">أميرتي.. ومالكة روحي</h2>
-                <h1 class="text-7xl md:text-[9rem] font-ruqaa text-transparent bg-clip-text bg-gradient-to-b from-[#fff] via-[#ffb3c6] to-[#ff003c] glow-text leading-tight drop-shadow-2xl py-4">
+            <div class="text-center mt-10 md:mt-24 mb-20 relative">
+                <div class="absolute inset-0 bg-red-600 blur-[120px] opacity-25 rounded-full w-80 h-80 mx-auto mix-blend-screen pointer-events-none"></div>
+                <h2 class="text-3xl md:text-5xl font-amiri text-gray-300 mb-6 tracking-widest drop-shadow-xl">أميرتي.. ومالكة روحي</h2>
+                <h1 class="text-[6rem] md:text-[11rem] font-ruqaa text-transparent bg-clip-text bg-gradient-to-b from-[#ffffff] via-[#ff99b3] to-[#cc0030] glow-text leading-tight py-4 relative z-10">
                     نمارق
                 </h1>
             </div>
 
-            <div class="glass-card w-full max-w-4xl rounded-[2.5rem] p-8 md:p-14 mb-16 relative overflow-hidden group">
-                <!-- إضاءات داخلية للبطاقة -->
-                <div class="absolute -top-20 -right-20 w-64 h-64 bg-red-600 rounded-full blur-[80px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000"></div>
-                <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-pink-600 rounded-full blur-[80px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000"></div>
+            <div class="glass-card w-full max-w-4xl rounded-[3rem] p-10 md:p-16 mb-20 relative overflow-hidden group">
+                <!-- إضاءات داخلية للبطاقة تتحرك عند المرور عليها -->
+                <div class="absolute -top-32 -right-32 w-80 h-80 bg-red-600 rounded-full blur-[100px] opacity-10 group-hover:opacity-40 transition-opacity duration-1000"></div>
+                <div class="absolute -bottom-32 -left-32 w-80 h-80 bg-pink-700 rounded-full blur-[100px] opacity-10 group-hover:opacity-40 transition-opacity duration-1000"></div>
                 
-                <div class="min-h-[200px] md:min-h-[250px] flex items-center justify-center relative z-10 text-center">
-                    <p id="typewriter-text" class="text-2xl md:text-4xl leading-relaxed md:leading-[2.5] text-gray-100 font-amiri typewriter-cursor drop-shadow-md"></p>
+                <div class="min-h-[250px] md:min-h-[300px] flex items-center justify-center relative z-10 text-center">
+                    <p id="typewriter-text" class="text-2xl md:text-4xl leading-[2.2] md:leading-[2.5] text-gray-100 font-amiri typewriter-cursor drop-shadow-2xl font-semibold"></p>
                 </div>
             </div>
 
-            <div class="flex items-center justify-center w-full mb-10 mt-10 opacity-0 transform translate-y-10 transition-all duration-1000 delay-500" id="cards-title">
-                <div class="h-[1px] bg-gradient-to-r from-transparent via-red-500 to-transparent flex-1 opacity-50"></div>
-                <h3 class="text-3xl md:text-5xl font-ruqaa gold-glow px-6 text-center">لماذا أنتِ كل شيء؟</h3>
-                <div class="h-[1px] bg-gradient-to-r from-transparent via-red-500 to-transparent flex-1 opacity-50"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl opacity-0 transform translate-y-10 transition-all duration-1000 delay-700" id="cards-container">
-                
-                <!-- Card 1 -->
-                <div class="glass-card rounded-[2rem] p-8 text-center relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-b from-[#ff003c]/0 to-[#ff003c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-red-500 to-pink-700 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(255,0,60,0.4)] group-hover:scale-110 transition-transform duration-500">
-                        <span class="text-4xl">✨</span>
-                    </div>
-                    <h4 class="text-2xl font-ruqaa text-[#ff8a9c] mb-4 text-shadow">سحركِ الخاص</h4>
-                    <p class="text-gray-200 text-lg md:text-xl font-amiri leading-relaxed">
-                        حين تبتسمين يا نمارق، يتوقف الزمن، وتُزهر في زوايا قلبي المظلمة ألف ياسمينة.
-                    </p>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="glass-card rounded-[2rem] p-8 text-center relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-b from-[#ff003c]/0 to-[#ff003c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-red-500 to-pink-700 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(255,0,60,0.4)] group-hover:scale-110 transition-transform duration-500">
-                        <span class="text-4xl">👁️</span>
-                    </div>
-                    <h4 class="text-2xl font-ruqaa text-[#ff8a9c] mb-4 text-shadow">عيناكِ</h4>
-                    <p class="text-gray-200 text-lg md:text-xl font-amiri leading-relaxed">
-                        مجرتان من النور الصافي، أضيع في عمقهما كل يوم، لأجد نفسي من جديد بين أحضان طيفك.
-                    </p>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="glass-card rounded-[2rem] p-8 text-center relative overflow-hidden group">
-                    <div class="absolute inset-0 bg-gradient-to-b from-[#ff003c]/0 to-[#ff003c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-red-500 to-pink-700 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(255,0,60,0.4)] group-hover:scale-110 transition-transform duration-500">
-                        <span class="text-4xl">💍</span>
-                    </div>
-                    <h4 class="text-2xl font-ruqaa text-[#ff8a9c] mb-4 text-shadow">وعدي الأبدي</h4>
-                    <p class="text-gray-200 text-lg md:text-xl font-amiri leading-relaxed">
-                        أقسمت أن أبقى الكتف الذي تستندين عليه، والقلب الذي لا ينبض إلا باسمكِ، ولأجلكِ فقط.
-                    </p>
-                </div>
-                
+            <div class="flex items-center justify-center w-full mb-16 mt-10 opacity-0 transform translate-y-12 transition-all duration-1000 delay-500" id="cards-title">
+                <div class="h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent flex-1 opacity-60"></div>
+                <h3 class="text-4xl md:text-6xl font-ruqaa gold-glow px-8 text-center">لماذا أنتِ كل شيء؟</h3>
+                <div class="h-[2px] bg-gradient-to-r from-transparent via-red-500 to-transparent flex-1 opacity-60"></div>
             </div>
             
-            <p class="text-red-400/60 text-lg font-amiri text-center mt-20 mb-10 animate-pulse">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 w-full max-w-6xl opacity-0 transform translate-y-12 transition-all duration-1000 delay-700" id="cards-container">
+                
+                <!-- البطاقة الأولى -->
+                <div class="glass-card rounded-[2.5rem] p-10 text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#ff003c]/0 to-[#ff003c]/15 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="w-24 h-24 mx-auto bg-gradient-to-br from-red-600 to-pink-800 rounded-full flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(255,0,60,0.6)] group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
+                        <span class="text-5xl">✨</span>
+                    </div>
+                    <h4 class="text-3xl font-ruqaa text-[#ff9ebd] mb-5 drop-shadow-md">سحركِ الخاص</h4>
+                    <p class="text-gray-200 text-xl font-amiri leading-relaxed">
+                        حين تبتسمين يا نمارق، يتوقف الزمن، وتُزهر في زوايا قلبي المظلمة ألف ياسمينة. ضحكتكِ هي النور الذي أهتدي به.
+                    </p>
+                </div>
+
+                <!-- البطاقة الثانية -->
+                <div class="glass-card rounded-[2.5rem] p-10 text-center relative overflow-hidden group delay-100">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#ff003c]/0 to-[#ff003c]/15 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="w-24 h-24 mx-auto bg-gradient-to-br from-red-600 to-pink-800 rounded-full flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(255,0,60,0.6)] group-hover:scale-125 group-hover:-rotate-12 transition-all duration-500">
+                        <span class="text-5xl">👁️</span>
+                    </div>
+                    <h4 class="text-3xl font-ruqaa text-[#ff9ebd] mb-5 drop-shadow-md">عيناكِ</h4>
+                    <p class="text-gray-200 text-xl font-amiri leading-relaxed">
+                        مجرتان من النور الصافي، أضيع في عمقهما كل يوم، لأجد نفسي من جديد بين أحضان طيفكِ الدافئ.
+                    </p>
+                </div>
+
+                <!-- البطاقة الثالثة -->
+                <div class="glass-card rounded-[2.5rem] p-10 text-center relative overflow-hidden group delay-200">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#ff003c]/0 to-[#ff003c]/15 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="w-24 h-24 mx-auto bg-gradient-to-br from-red-600 to-pink-800 rounded-full flex items-center justify-center mb-8 shadow-[0_0_30px_rgba(255,0,60,0.6)] group-hover:scale-125 group-hover:rotate-12 transition-all duration-500">
+                        <span class="text-5xl">💍</span>
+                    </div>
+                    <h4 class="text-3xl font-ruqaa text-[#ff9ebd] mb-5 drop-shadow-md">وعدي الأبدي</h4>
+                    <p class="text-gray-200 text-xl font-amiri leading-relaxed">
+                        أقسمت أن أبقى الكتف الذي تستندين عليه، والقلب الذي لا ينبض إلا باسمكِ، ولأجلكِ فقط، ما حييت.
+                    </p>
+                </div>
+                
+            </div>
+            
+            <p class="text-red-400/80 text-xl font-amiri text-center mt-24 mb-10 animate-pulse tracking-wide">
                 ~ حركي إصبعكِ على الشاشة لتري كيف يتراقص قلبي من أجلك ~
             </p>
         </div>
     </div>
 
     <script>
-        // الرسالة الرومانسية المخصصة لنمارق
-        const message = "منذ أن عرفتكِ، أدركت أن الأبجدية خُلقت فقط لتكتب اسمكِ، وأن نبضات قلبي لم تكن سوى عدٍ تنازلي للحظة لقائكِ. أنتِ لستِ فقط حبيبتي يا نمارق... أنتِ الروح التي تسري في أوردتي، أنتِ النور الذي أضاء عتمة أيامي. أحبكِ بحجم السماء، وأعمق من البحار.";
+        // الرسالة الرومانسية المخصصة (يمكنك تعديلها إذا أردت)
+        const message = "منذ أن عرفتكِ يا نمارق، أدركت أن الأبجدية خُلقت فقط لتكتب اسمكِ، وأن نبضات قلبي لم تكن سوى عدٍ تنازلي للحظة لقائكِ. أنتِ لستِ فقط حبيبتي... أنتِ الروح التي تسري في أوردتي، أنتِ النور الذي أضاء عتمة أيامي. أحبكِ بحجم السماء، وأعمق من البحار.";
         
         const typeWriterElement = document.getElementById('typewriter-text');
         let i = 0;
-        let typingSpeed = 60; // سرعة الكتابة
+        let typingSpeed = 65; // سرعة الكتابة
         let isOpened = false;
 
-        // دالة فتح الهدية
+        // دالة فتح الهدية وإخفاء الشاشة الافتتاحية
         function revealLove() {
             if (isOpened) return;
             isOpened = true;
@@ -242,7 +259,7 @@
             const intro = document.getElementById('intro-screen');
             const mainContent = document.getElementById('main-content');
 
-            // إخفاء الشاشة الافتتاحية
+            // إخفاء بطيء للشاشة الافتتاحية
             intro.style.opacity = '0';
             intro.style.visibility = 'hidden';
             
@@ -253,99 +270,104 @@
                 mainContent.style.visibility = 'visible';
                 mainContent.style.opacity = '1';
                 
-                // تشغيل تأثيرات الخلفية (الورد المتساقط)
+                // تشغيل تأثيرات البتلات المتساقطة
                 startFallingPetals();
                 
-                // بدء الكتابة بعد ثانية من الظهور
+                // بدء الكتابة بالآلة الكاتبة بعد ثانية
                 setTimeout(typeWriter, 1000);
-            }, 1500); // الانتظار حتى ينتهي تأثير الاختفاء
+            }, 1800); 
         }
 
-        // تأثير الآلة الكاتبة
+        // تأثير الكتابة الحرفية
         function typeWriter() {
             if (i < message.length) {
-                // إضافة الحرف الحالي
                 typeWriterElement.innerHTML += message.charAt(i);
                 i++;
                 
-                // تنويع سرعة الكتابة لإعطاء شعور طبيعي
+                // تغيير سرعة الكتابة عند الفواصل لجعلها تبدو طبيعية
                 let currentSpeed = typingSpeed;
-                // وقفة قصيرة عند الفواصل والنقاط
-                if (message.charAt(i-1) === '،' || message.charAt(i-1) === '.') {
-                    currentSpeed = 400;
+                const lastChar = message.charAt(i-1);
+                if (lastChar === '،' || lastChar === '.' || lastChar === '…') {
+                    currentSpeed = 500; // وقفة أطول
                 }
                 
                 setTimeout(typeWriter, currentSpeed);
             } else {
-                // بعد انتهاء الكتابة
+                // بعد انتهاء الرسالة، يتم إخفاء مؤشر الكتابة وإظهار البطاقات
                 typeWriterElement.classList.remove('typewriter-cursor');
                 
-                // إظهار البطاقات السفلية بانسيابية
-                document.getElementById('cards-title').classList.remove('opacity-0', 'translate-y-10');
-                document.getElementById('cards-container').classList.remove('opacity-0', 'translate-y-10');
+                setTimeout(() => {
+                    document.getElementById('cards-title').classList.remove('opacity-0', 'translate-y-12');
+                    setTimeout(() => {
+                        document.getElementById('cards-container').classList.remove('opacity-0', 'translate-y-12');
+                    }, 300);
+                }, 500);
             }
         }
 
+        // توليد بتلات الورد المتساقطة
         function createPetal() {
             if(!isOpened) return;
             
             const petal = document.createElement('div');
             petal.classList.add('petal');
             
-            // أحجام عشوائية للبتلات
-            const size = Math.random() * 15 + 10; // بين 10 و 25 بيكسل
+            // أحجام عشوائية
+            const size = Math.random() * 18 + 12; 
             petal.style.width = `${size}px`;
             petal.style.height = `${size}px`;
             
-            // مكان بداية عشوائي أفقياً
+            // موقع أفقي عشوائي
             petal.style.left = `${Math.random() * 100}vw`;
             
-            // مدة سقوط وتأخير عشوائي
-            const duration = Math.random() * 5 + 7; // بين 7 و 12 ثانية
+            // سرعة سقوط عشوائية
+            const duration = Math.random() * 6 + 8; 
             petal.style.animationDuration = `${duration}s`;
             petal.style.animationDelay = `${Math.random() * 5}s`;
             
-            // ألوان درجات الأحمر
-            const colors = ['#ff003c', '#cc0030', '#ff3366', '#8a0021'];
+            // تدرجات الأحمر الداكن والوردي
+            const colors = ['#ff003c', '#cc0030', '#ff1a4f', '#990024', '#ff3366'];
             petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
             
             document.getElementById('petals-container').appendChild(petal);
 
-            // مسح البتلة بعد انتهاء حركتها
+            // حذف البتلة بعد خروجها من الشاشة لتخفيف العبء على المتصفح
             setTimeout(() => {
                 if(petal.parentNode) petal.remove();
             }, (duration + 5) * 1000);
         }
 
         function startFallingPetals() {
-            // إنشاء عدد من البتلات مبدئياً
-            for(let j=0; j<20; j++) {
-                setTimeout(createPetal, Math.random() * 3000);
+            // توليد دفعة أولى
+            for(let j=0; j<25; j++) {
+                setTimeout(createPetal, Math.random() * 4000);
             }
-            // استمرار إنشاء البتلات
-            setInterval(createPetal, 800);
+            // توليد مستمر
+            setInterval(createPetal, 600);
         }
 
+        // توليد القلوب السحرية المضيئة عند اللمس/الماوس
         function spawnMagicHeart(x, y) {
             if(!isOpened) return;
             
             const heart = document.createElement('div');
             heart.classList.add('magic-heart');
             
-            const hearts = ['❤️', '💖', '✨', '🌹'];
+            // تشكيلة من الرموز الرومانسية
+            const hearts = ['❤️', '💖', '✨', '🌹', '💕', '🔥'];
             heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
             
-            // أحجام عشوائية
-            const size = Math.random() * 20 + 15;
+            // حجم عشوائي
+            const size = Math.random() * 25 + 15;
             heart.style.fontSize = `${size}px`;
             
-            // تحديد الموقع بناءً على إحداثيات الماوس/اللمس
+            // تحديد الموقع
             heart.style.left = `${x}px`;
             heart.style.top = `${y}px`;
             
-            // إزاحة عشوائية بسيطة
-            const offset = (Math.random() - 0.5) * 40;
-            heart.style.transform = `translate(calc(-50% + ${offset}px), -50%)`;
+            // انتشار عشوائي حول النقطة
+            const offsetX = (Math.random() - 0.5) * 50;
+            heart.style.transform = `translate(calc(-50% + ${offsetX}px), -50%)`;
             
             document.body.appendChild(heart);
             
@@ -355,37 +377,37 @@
             }, 1500);
         }
 
-        // دعم الماوس
+        // تتبع حركة الماوس
         let lastMoveTime = 0;
         document.addEventListener('mousemove', (e) => {
             const now = Date.now();
-            // تقليل عدد القلوب المتولدة عند تحريك الماوس (واحدة كل 50 ملي ثانية كحد أقصى)
-            if (now - lastMoveTime > 50) {
+            if (now - lastMoveTime > 40) { // تقليل الكثافة لتجنب التعليق
                 spawnMagicHeart(e.clientX, e.clientY);
                 lastMoveTime = now;
             }
         });
 
-        // دعم اللمس على الشاشات
+        // تتبع اللمس على الهواتف
         document.addEventListener('touchmove', (e) => {
             const now = Date.now();
-            if (now - lastMoveTime > 50 && e.touches.length > 0) {
+            if (now - lastMoveTime > 40 && e.touches.length > 0) {
                 const touch = e.touches[0];
                 spawnMagicHeart(touch.clientX, touch.clientY);
                 lastMoveTime = now;
             }
         }, {passive: true});
 
-        // تأثير انفجار قلوب عند النقر
+        // تأثير انفجار كبير للقلوب عند النقر في أي مكان
         document.addEventListener('click', (e) => {
-            if(!isOpened || e.target.closest('button')) return;
+            if(!isOpened || e.target.closest('.heart-btn-container')) return;
             
-            for(let j=0; j<8; j++) {
+            // توليد 12 قلب دفعة واحدة في اتجاهات مختلفة
+            for(let j=0; j<12; j++) {
                 setTimeout(() => {
-                    const offsetX = e.clientX + (Math.random() - 0.5) * 80;
-                    const offsetY = e.clientY + (Math.random() - 0.5) * 80;
+                    const offsetX = e.clientX + (Math.random() - 0.5) * 100;
+                    const offsetY = e.clientY + (Math.random() - 0.5) * 100;
                     spawnMagicHeart(offsetX, offsetY);
-                }, j * 50);
+                }, j * 40);
             }
         });
 
