@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إلى نبض قلبي نمارق</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            /* خلفية عميقة وداكنة جداً للتركيز على الألوان الحمراء والذهبية */
+            background: radial-gradient(circle at center, #2a0008 0%, #0a0002 100%);
+            color: #fff;
+            overflow-x: hidden;
+            margin: 0;
+            min-height: 100vh;
+            cursor: pointer; /* تلميح للمستخدم بإمكانية النقر */
+        }
+
+        .font-amiri { font-family: 'Amiri', serif; }
+        .font-ruqaa { font-family: 'Aref Ruqaa', serif; } /* خط كلاسيكي فخم للاسم */
+
+        .petal {
+            position: absolute;
+            background-color: #ff003c;
+            border-radius: 150% 0 150% 0;
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
+            animation: fall linear infinite;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg) scale(0.5); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { transform: translateY(110vh) rotate(360deg) scale(1.2); opacity: 0; }
+        }
+
+        .magic-heart {
+            position: absolute;
+            pointer-events: none;
+            animation: floatMagic 1.5s ease-out forwards;
+            z-index: 100;
+            text-shadow: 0 0 15px rgba(255, 20, 147, 0.8);
+        }
+
+        @keyframes floatMagic {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 1; }
+            100% { transform: translate(-50%, -150px) scale(1.5); opacity: 0; }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(255, 0, 60, 0.8), 0 0 40px rgba(255, 0, 60, 0.4);
+        }
+
+        .gold-glow {
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+            color: #ffd700;
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 0, 60, 0.05) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 0, 60, 0.15);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(255, 0, 60, 0.05);
+            transition: all 0.5s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 0, 60, 0.3), inset 0 0 30px rgba(255, 0, 60, 0.1);
+            border: 1px solid rgba(255, 0, 60, 0.4);
+        }
+
+        .heart-btn {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #cc0000);
+            transform: rotate(45deg);
+            animation: intenseHeartbeat 1.2s infinite;
+            cursor: pointer;
+            box-shadow: 0 0 40px rgba(204, 0, 0, 0.8);
+            border: none;
+            outline: none;
+        }
+
+        .heart-btn::before, .heart-btn::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 30% 30%, #ff4d4d, #cc0000);
+            border-radius: 50%;
+        }
+
+        .heart-btn::before { top: -60px; left: 0; }
+        .heart-btn::after { top: 0; left: -60px; }
+
+        @keyframes intenseHeartbeat {
+            0% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(255, 0, 60, 0.5); }
+            15% { transform: rotate(45deg) scale(1.1); box-shadow: 0 0 60px rgba(255, 0, 60, 1); }
+            30% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(255, 0, 60, 0.5); }
+            45% { transform: rotate(45deg) scale(1.2); box-shadow: 0 0 80px rgba(255, 0, 60, 1); }
+            100% { transform: rotate(45deg) scale(0.9); box-shadow: 0 0 20px rgba(255, 0, 60, 0.5); }
+        }
+
+        .transition-opacity { transition: opacity 1.5s ease-in-out, visibility 1.5s ease-in-out; }
+        
+        .typewriter-cursor::after {
+            content: '|';
+            animation: blink 1s infinite;
+            color: #ff003c;
+            text-shadow: 0 0 10px #ff003c;
+        }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0a0002; }
+        ::-webkit-scrollbar-thumb { background: #ff003c; border-radius: 4px; }
+    </style>
+</head>
+<body class="relative flex items-center justify-center min-h-screen">
+
+    <!-- حاوية التأثيرات الخلفية (بتلات الورد) -->
+    <div id="petals-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
+
+    <div id="intro-screen" class="fixed inset-0 flex flex-col items-center justify-center z-50 bg-[#0a0002] transition-opacity">
+        <div class="text-center flex flex-col items-center justify-center">
+            <p class="text-xl md:text-2xl font-amiri text-gray-400 mb-16 tracking-widest opacity-80" style="animation: pulseText 3s infinite alternate;">
+                هناك شيء يختلج في صدري...
+            </p>
+            
+            <!-- الزر على شكل قلب حقيقي ينبض -->
+            <div class="mt-10 mb-20">
+                <button onclick="revealLove()" class="heart-btn" aria-label="افتح الهدية"></button>
+            </div>
+            
+            <p class="text-2xl md:text-3xl font-amiri gold-glow mt-8">
+                المسي قلبي، يا نمارق...
+            </p>
+        </div>
+    </div>
+    
+    <style>
+        @keyframes pulseText { from { opacity: 0.4; } to { opacity: 1; } }
+    </style>
+
+    <div id="main-content" class="opacity-0 invisible absolute inset-0 w-full h-full z-10 flex flex-col items-center overflow-y-auto overflow-x-hidden pt-10 pb-20 px-4 transition-opacity">
+        
+        <div class="w-full max-w-5xl flex flex-col items-center">
+            
+            <!-- عنوان الاسم الفخم -->
+            <div class="text-center mt-10 md:mt-20 mb-16 relative">
+                <div class="absolute inset-0 bg-red-600 blur-[100px] opacity-20 rounded-full w-64 h-64 mx-auto mix-blend-screen pointer-events-none"></div>
+                <h2 class="text-2xl md:text-4xl font-amiri text-gray-300 mb-4 tracking-wider">أميرتي.. ومالكة روحي</h2>
+                <h1 class="text-7xl md:text-[9rem] font-ruqaa text-transparent bg-clip-text bg-gradient-to-b from-[#fff] via-[#ffb3c6] to-[#ff003c] glow-text leading-tight drop-shadow-2xl py-4">
+                    نمارق
+                </h1>
+            </div>
+
+            <div class="glass-card w-full max-w-4xl rounded-[2.5rem] p-8 md:p-14 mb-16 relative overflow-hidden group">
+                <!-- إضاءات داخلية للبطاقة -->
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-red-600 rounded-full blur-[80px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000"></div>
+                <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-pink-600 rounded-full blur-[80px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000"></div>
+                
+                <div class="min-h-[200px] md:min-h-[250px] flex items-center justify-center relative z-10 text-center">
+                    <p id="typewriter-text" class="text-2xl md:text-4xl leading-relaxed md:leading-[2.5] text-gray-100 font-amiri typewriter-cursor drop-shadow-md"></p>
+                </div>
+            </div>
+
+            <div class="flex items-center justify-center w-full mb-10 mt-10 opacity-0 transform translate-y-10 transition-all duration-1000 delay-500" id="cards-title">
+                <div class="h-[1px] bg-gradient-to-r from-transparent via-red-500 to-transparent flex-1 opacity-50"></div>
+                <h3 class="text-3xl md:text-5xl font-ruqaa gold-glow px-6 text-center">لماذا أنتِ كل شيء؟</h3>
+                <div class="h-[1px] bg-gradient-to-r from-transparent via-red-500 to-transparent flex-1 opacity-50"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl opacity-0 transform translate-y-10 transition-all duration-1000 delay-700" id="cards-container">
+                
+                <!-- Card 1 -->
+                <div class="glass-card rounded-[2rem] p-8 text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#ff003c]/0 to-[#ff003c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-red-500 to-pink-700 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(255,0,60,0.4)] group-hover:scale-110 transition-transform duration-500">
+                        <span class="text-4xl">✨</span>
+                    </div>
+                    <h4 class="text-2xl font-ruqaa text-[#ff8a9c] mb-4 text-shadow">سحركِ الخاص</h4>
+                    <p class="text-gray-200 text-lg md:text-xl font-amiri leading-relaxed">
+                        حين تبتسمين يا نمارق، يتوقف الزمن، وتُزهر في زوايا قلبي المظلمة ألف ياسمينة.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card rounded-[2rem] p-8 text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#ff003c]/0 to-[#ff003c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-red-500 to-pink-700 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(255,0,60,0.4)] group-hover:scale-110 transition-transform duration-500">
+                        <span class="text-4xl">👁️</span>
+                    </div>
+                    <h4 class="text-2xl font-ruqaa text-[#ff8a9c] mb-4 text-shadow">عيناكِ</h4>
+                    <p class="text-gray-200 text-lg md:text-xl font-amiri leading-relaxed">
+                        مجرتان من النور الصافي، أضيع في عمقهما كل يوم، لأجد نفسي من جديد بين أحضان طيفك.
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card rounded-[2rem] p-8 text-center relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-b from-[#ff003c]/0 to-[#ff003c]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-red-500 to-pink-700 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(255,0,60,0.4)] group-hover:scale-110 transition-transform duration-500">
+                        <span class="text-4xl">💍</span>
+                    </div>
+                    <h4 class="text-2xl font-ruqaa text-[#ff8a9c] mb-4 text-shadow">وعدي الأبدي</h4>
+                    <p class="text-gray-200 text-lg md:text-xl font-amiri leading-relaxed">
+                        أقسمت أن أبقى الكتف الذي تستندين عليه، والقلب الذي لا ينبض إلا باسمكِ، ولأجلكِ فقط.
+                    </p>
+                </div>
+                
+            </div>
+            
+            <p class="text-red-400/60 text-lg font-amiri text-center mt-20 mb-10 animate-pulse">
+                ~ حركي إصبعكِ على الشاشة لتري كيف يتراقص قلبي من أجلك ~
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // الرسالة الرومانسية المخصصة لنمارق
+        const message = "منذ أن عرفتكِ، أدركت أن الأبجدية خُلقت فقط لتكتب اسمكِ، وأن نبضات قلبي لم تكن سوى عدٍ تنازلي للحظة لقائكِ. أنتِ لستِ فقط حبيبتي يا نمارق... أنتِ الروح التي تسري في أوردتي، أنتِ النور الذي أضاء عتمة أيامي. أحبكِ بحجم السماء، وأعمق من البحار.";
+        
+        const typeWriterElement = document.getElementById('typewriter-text');
+        let i = 0;
+        let typingSpeed = 60; // سرعة الكتابة
+        let isOpened = false;
+
+        // دالة فتح الهدية
+        function revealLove() {
+            if (isOpened) return;
+            isOpened = true;
+
+            const intro = document.getElementById('intro-screen');
+            const mainContent = document.getElementById('main-content');
+
+            // إخفاء الشاشة الافتتاحية
+            intro.style.opacity = '0';
+            intro.style.visibility = 'hidden';
+            
+            setTimeout(() => {
+                intro.style.display = 'none';
+                
+                // إظهار المحتوى الرئيسي
+                mainContent.style.visibility = 'visible';
+                mainContent.style.opacity = '1';
+                
+                // تشغيل تأثيرات الخلفية (الورد المتساقط)
+                startFallingPetals();
+                
+                // بدء الكتابة بعد ثانية من الظهور
+                setTimeout(typeWriter, 1000);
+            }, 1500); // الانتظار حتى ينتهي تأثير الاختفاء
+        }
+
+        // تأثير الآلة الكاتبة
+        function typeWriter() {
+            if (i < message.length) {
+                // إضافة الحرف الحالي
+                typeWriterElement.innerHTML += message.charAt(i);
+                i++;
+                
+                // تنويع سرعة الكتابة لإعطاء شعور طبيعي
+                let currentSpeed = typingSpeed;
+                // وقفة قصيرة عند الفواصل والنقاط
+                if (message.charAt(i-1) === '،' || message.charAt(i-1) === '.') {
+                    currentSpeed = 400;
+                }
+                
+                setTimeout(typeWriter, currentSpeed);
+            } else {
+                // بعد انتهاء الكتابة
+                typeWriterElement.classList.remove('typewriter-cursor');
+                
+                // إظهار البطاقات السفلية بانسيابية
+                document.getElementById('cards-title').classList.remove('opacity-0', 'translate-y-10');
+                document.getElementById('cards-container').classList.remove('opacity-0', 'translate-y-10');
+            }
+        }
+
+        function createPetal() {
+            if(!isOpened) return;
+            
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            // أحجام عشوائية للبتلات
+            const size = Math.random() * 15 + 10; // بين 10 و 25 بيكسل
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            
+            // مكان بداية عشوائي أفقياً
+            petal.style.left = `${Math.random() * 100}vw`;
+            
+            // مدة سقوط وتأخير عشوائي
+            const duration = Math.random() * 5 + 7; // بين 7 و 12 ثانية
+            petal.style.animationDuration = `${duration}s`;
+            petal.style.animationDelay = `${Math.random() * 5}s`;
+            
+            // ألوان درجات الأحمر
+            const colors = ['#ff003c', '#cc0030', '#ff3366', '#8a0021'];
+            petal.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.getElementById('petals-container').appendChild(petal);
+
+            // مسح البتلة بعد انتهاء حركتها
+            setTimeout(() => {
+                if(petal.parentNode) petal.remove();
+            }, (duration + 5) * 1000);
+        }
+
+        function startFallingPetals() {
+            // إنشاء عدد من البتلات مبدئياً
+            for(let j=0; j<20; j++) {
+                setTimeout(createPetal, Math.random() * 3000);
+            }
+            // استمرار إنشاء البتلات
+            setInterval(createPetal, 800);
+        }
+
+        function spawnMagicHeart(x, y) {
+            if(!isOpened) return;
+            
+            const heart = document.createElement('div');
+            heart.classList.add('magic-heart');
+            
+            const hearts = ['❤️', '💖', '✨', '🌹'];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+            
+            // أحجام عشوائية
+            const size = Math.random() * 20 + 15;
+            heart.style.fontSize = `${size}px`;
+            
+            // تحديد الموقع بناءً على إحداثيات الماوس/اللمس
+            heart.style.left = `${x}px`;
+            heart.style.top = `${y}px`;
+            
+            // إزاحة عشوائية بسيطة
+            const offset = (Math.random() - 0.5) * 40;
+            heart.style.transform = `translate(calc(-50% + ${offset}px), -50%)`;
+            
+            document.body.appendChild(heart);
+            
+            // تنظيف بعد انتهاء الحركة
+            setTimeout(() => {
+                if(heart.parentNode) heart.remove();
+            }, 1500);
+        }
+
+        // دعم الماوس
+        let lastMoveTime = 0;
+        document.addEventListener('mousemove', (e) => {
+            const now = Date.now();
+            // تقليل عدد القلوب المتولدة عند تحريك الماوس (واحدة كل 50 ملي ثانية كحد أقصى)
+            if (now - lastMoveTime > 50) {
+                spawnMagicHeart(e.clientX, e.clientY);
+                lastMoveTime = now;
+            }
+        });
+
+        // دعم اللمس على الشاشات
+        document.addEventListener('touchmove', (e) => {
+            const now = Date.now();
+            if (now - lastMoveTime > 50 && e.touches.length > 0) {
+                const touch = e.touches[0];
+                spawnMagicHeart(touch.clientX, touch.clientY);
+                lastMoveTime = now;
+            }
+        }, {passive: true});
+
+        // تأثير انفجار قلوب عند النقر
+        document.addEventListener('click', (e) => {
+            if(!isOpened || e.target.closest('button')) return;
+            
+            for(let j=0; j<8; j++) {
+                setTimeout(() => {
+                    const offsetX = e.clientX + (Math.random() - 0.5) * 80;
+                    const offsetY = e.clientY + (Math.random() - 0.5) * 80;
+                    spawnMagicHeart(offsetX, offsetY);
+                }, j * 50);
+            }
+        });
+
+    </script>
+</body>
+</html>
